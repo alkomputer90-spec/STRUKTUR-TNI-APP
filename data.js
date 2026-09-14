@@ -1,6 +1,6 @@
-// Edit nodes untuk menambah jabatan/nama; forces berisi pilihan matra. Baca README.md.
+// Data organisasi TNI lokal. Alamat hanya diisi bila memiliki rujukan publik yang dapat diverifikasi.
 window.ORG_DATA = {
-  "version": 2,
+  "version": 3,
   "root": "kasad",
   "source": "AD: seed pengguna. AU/AL: struktur awal dari sumber resmi yang dicantumkan per simpul; dibaca 15 September 2026. Kelompok tampilan bukan penetapan rantai komando.",
   "nodes": {
@@ -37,7 +37,17 @@ window.ORG_DATA = {
         "ahli",
         "pelayanan",
         "balakpus"
-      ]
+      ],
+      "address": {
+        "text": "Jalan Veteran No. 5, Jakarta Pusat",
+        "status": "Sumber resmi",
+        "verified": "2026-09-15",
+        "sourceIds": [
+          "addr-ppid-tniad"
+        ],
+        "city": "Jakarta Pusat",
+        "province": "DKI Jakarta"
+      }
     },
     "pimpinan": {
       "label": "Unsur Pimpinan",
@@ -434,11 +444,32 @@ window.ORG_DATA = {
     },
     "pusterad": {
       "label": "Pusat Teritorial Angkatan Darat (Pusterad)",
-      "short": "PUSTERAD"
+      "short": "PUSTERAD",
+      "address": {
+        "text": "Jl. Setu, Cipayung, Jakarta Timur",
+        "status": "Sumber resmi",
+        "verified": "2026-09-15",
+        "sourceIds": [
+          "addr-pusterad"
+        ],
+        "city": "Jakarta Timur",
+        "province": "DKI Jakarta"
+      }
     },
     "puspomad": {
       "label": "Pusat Polisi Militer Angkatan Darat (Puspomad)",
-      "short": "PUSPOMAD"
+      "short": "PUSPOMAD",
+      "address": {
+        "text": "Jl. Merdeka Timur No. 17, Jakarta Pusat 10110",
+        "status": "Sumber resmi",
+        "verified": "2026-09-15",
+        "sourceIds": [
+          "addr-puspomad"
+        ],
+        "city": "Jakarta Pusat",
+        "province": "DKI Jakarta",
+        "postalCode": "10110"
+      }
     },
     "puspenerbad": {
       "label": "Pusat Penerbangan Angkatan Darat (Puspenerbad)",
@@ -477,18 +508,51 @@ window.ORG_DATA = {
     },
     "akmil": {
       "label": "Akademi Militer (Akmil)",
-      "short": "AKMIL"
+      "short": "AKMIL",
+      "address": {
+        "text": "Kompleks Akademi Militer, Magelang, Jawa Tengah",
+        "status": "Sumber resmi",
+        "verified": "2026-09-15",
+        "sourceIds": [
+          "addr-akmil"
+        ],
+        "city": "Magelang",
+        "province": "Jawa Tengah",
+        "note": "Situs resmi memastikan lokasi Akmil di Kota Magelang; halaman lokasi tidak mencantumkan nomor jalan."
+      }
     },
     "seskoad": {
       "label": "Sekolah Staf dan Komando Angkatan Darat (Seskoad)",
-      "short": "SESKOAD"
+      "short": "SESKOAD",
+      "address": {
+        "text": "Jl. Gatot Subroto No. 96, Bandung, Jawa Barat 40263",
+        "status": "Sumber resmi",
+        "verified": "2026-09-15",
+        "sourceIds": [
+          "addr-seskoad"
+        ],
+        "city": "Bandung",
+        "province": "Jawa Barat",
+        "postalCode": "40263"
+      }
     },
     "secapa": {
       "label": "Sekolah Calon Perwira Angkatan Darat (Secapa AD)",
       "short": "SECAPA AD",
       "aliases": [
         "Secapaad"
-      ]
+      ],
+      "address": {
+        "text": "Jl. Hegarmanah No. 152, Hegarmanah, Kec. Cidadap, Kota Bandung, Jawa Barat 40141",
+        "status": "Sumber resmi",
+        "verified": "2026-09-15",
+        "sourceIds": [
+          "addr-secapaad"
+        ],
+        "city": "Bandung",
+        "province": "Jawa Barat",
+        "postalCode": "40141"
+      }
     },
     "wilayah": {
       "label": "Komando Kewilayahan",
@@ -593,7 +657,17 @@ window.ORG_DATA = {
       "note": "Kelompok tampilan untuk eksplorasi; bukan nama satuan atau penetapan rantai komando operasional.",
       "sourceIds": [
         "au-pejabat"
-      ]
+      ],
+      "address": {
+        "text": "Mabes TNI Cilangkap, Jakarta Timur",
+        "status": "Sumber resmi",
+        "verified": "2026-09-15",
+        "sourceIds": [
+          "addr-ppid-tniad"
+        ],
+        "city": "Jakarta Timur",
+        "province": "DKI Jakarta"
+      }
     },
     "au-staf": {
       "label": "Unsur Pembantu Pimpinan / Staf Kasau",
@@ -943,7 +1017,18 @@ window.ORG_DATA = {
       "short": "AAU",
       "sourceIds": [
         "au-pusat"
-      ]
+      ],
+      "address": {
+        "text": "Jl. Raya Solo - Yogyakarta, Maredan/Mereden, Sendangtirto, Kec. Kalasan, Kabupaten Sleman, DI Yogyakarta 55281",
+        "status": "Sumber resmi",
+        "verified": "2026-09-15",
+        "sourceIds": [
+          "addr-aau"
+        ],
+        "city": "Sleman",
+        "province": "DI Yogyakarta",
+        "postalCode": "55281"
+      }
     },
     "au-seskoau": {
       "label": "Sekolah Staf dan Komando Angkatan Udara (SESKOAU)",
@@ -1025,7 +1110,17 @@ window.ORG_DATA = {
       "note": "Kelompok tampilan untuk eksplorasi; bukan nama satuan atau penetapan rantai komando operasional.",
       "sourceIds": [
         "al-unsur"
-      ]
+      ],
+      "address": {
+        "text": "Mabes TNI Cilangkap, Jakarta Timur",
+        "status": "Sumber resmi",
+        "verified": "2026-09-15",
+        "sourceIds": [
+          "addr-ppid-tniad"
+        ],
+        "city": "Jakarta Timur",
+        "province": "DKI Jakarta"
+      }
     },
     "al-staf": {
       "label": "Unsur Pembantu Pimpinan / Staf Kasal",
@@ -1200,7 +1295,18 @@ window.ORG_DATA = {
       "short": "KOARMADA III",
       "sourceIds": [
         "al-armada"
-      ]
+      ],
+      "address": {
+        "text": "Markas Koarmada III, Katapop, Distrik Salawati, Kabupaten Sorong, Papua Barat Daya",
+        "status": "Sumber resmi",
+        "verified": "2026-09-15",
+        "sourceIds": [
+          "addr-koarmada3"
+        ],
+        "city": "Kabupaten Sorong",
+        "province": "Papua Barat Daya",
+        "note": "Situs resmi Koarmada III juga masih menampilkan alamat lama Jl. Bubara No. 1 pada footer; berita resmi menyebut markas telah berpindah ke Katapop sejak 16 November 2020."
+      }
     },
     "al-kodaeral": {
       "label": "Komando Daerah TNI AL (KODAERAL)",
@@ -1373,7 +1479,18 @@ window.ORG_DATA = {
       "short": "KOLINLAMIL",
       "sourceIds": [
         "al-kotama"
-      ]
+      ],
+      "address": {
+        "text": "Jl. Pelabuhan Tanjung Priok, RW.1, Tanjung Priok, Kec. Koja, Jakarta Utara 14310",
+        "status": "Sumber resmi",
+        "verified": "2026-09-15",
+        "sourceIds": [
+          "addr-kolinlamil"
+        ],
+        "city": "Jakarta Utara",
+        "province": "DKI Jakarta",
+        "postalCode": "14310"
+      }
     },
     "al-marinir": {
       "label": "Korps Marinir (KORMAR)",
@@ -1390,7 +1507,18 @@ window.ORG_DATA = {
       "sourceIds": [
         "al-kotama",
         "al-pasmar"
-      ]
+      ],
+      "address": {
+        "text": "Jl. Prajurit KKO Usman dan Harun No. 32, Senen, Jakarta Pusat 10410",
+        "status": "Sumber resmi",
+        "verified": "2026-09-15",
+        "sourceIds": [
+          "addr-kormar"
+        ],
+        "city": "Jakarta Pusat",
+        "province": "DKI Jakarta",
+        "postalCode": "10410"
+      }
     },
     "al-pasmar-1": {
       "label": "Pasukan Marinir 1 (PASMAR 1)",
@@ -1399,7 +1527,18 @@ window.ORG_DATA = {
       "short": "PASMAR 1",
       "sourceIds": [
         "al-pasmar"
-      ]
+      ],
+      "address": {
+        "text": "Jl. Cilincing Landak, RT.3/RW.2, Marunda, Kec. Cilincing, Jakarta Utara 14150",
+        "status": "Sumber resmi",
+        "verified": "2026-09-15",
+        "sourceIds": [
+          "addr-pasmar1"
+        ],
+        "city": "Jakarta Utara",
+        "province": "DKI Jakarta",
+        "postalCode": "14150"
+      }
     },
     "al-pasmar-2": {
       "label": "Pasukan Marinir 2 (PASMAR 2)",
@@ -1408,7 +1547,17 @@ window.ORG_DATA = {
       "short": "PASMAR 2",
       "sourceIds": [
         "al-pasmar"
-      ]
+      ],
+      "address": {
+        "text": "Kesatrian Marinir Moekijat, Jl. A. Yani No. 1A, Gedangan, Sidoarjo, Jawa Timur",
+        "status": "Sumber resmi",
+        "verified": "2026-09-15",
+        "sourceIds": [
+          "addr-pasmar2"
+        ],
+        "city": "Sidoarjo",
+        "province": "Jawa Timur"
+      }
     },
     "al-pasmar-3": {
       "label": "Pasukan Marinir 3 (PASMAR 3)",
@@ -1417,7 +1566,17 @@ window.ORG_DATA = {
       "short": "PASMAR 3",
       "sourceIds": [
         "al-pasmar"
-      ]
+      ],
+      "address": {
+        "text": "Kesatrian Marinir Agoes Soebekti, Jl. Sorong-Klamono Km. 16, Distrik Klaurung, Kota Sorong, Papua Barat Daya",
+        "status": "Sumber resmi",
+        "verified": "2026-09-15",
+        "sourceIds": [
+          "addr-pasmar3"
+        ],
+        "city": "Kota Sorong",
+        "province": "Papua Barat Daya"
+      }
     },
     "al-pendidikan": {
       "label": "Pendidikan dan Latihan TNI AL",
@@ -1458,7 +1617,18 @@ window.ORG_DATA = {
       "short": "SESKOAL",
       "sourceIds": [
         "al-kotama"
-      ]
+      ],
+      "address": {
+        "text": "Seskoal, Cipulir, Kebayoran Lama, Jakarta Selatan",
+        "status": "Sumber resmi",
+        "verified": "2026-09-15",
+        "sourceIds": [
+          "addr-seskoal"
+        ],
+        "city": "Jakarta Selatan",
+        "province": "DKI Jakarta",
+        "note": "Sumber resmi 2026 menegaskan lokasi Seskoal di Cipulir, Kebayoran Lama; nomor jalan tidak dicantumkan pada sumber yang diverifikasi."
+      }
     },
     "al-pusat": {
       "label": "Pusat / Badan Pelaksana TNI AL",
@@ -1481,7 +1651,18 @@ window.ORG_DATA = {
       "short": "PUSHIDROSAL",
       "sourceIds": [
         "al-kotama"
-      ]
+      ],
+      "address": {
+        "text": "Jl. Pantai Kuta V No. 1, Ancol Timur, Jakarta Utara 14430",
+        "status": "Sumber resmi",
+        "verified": "2026-09-15",
+        "sourceIds": [
+          "addr-pushidrosal"
+        ],
+        "city": "Jakarta Utara",
+        "province": "DKI Jakarta",
+        "postalCode": "14430"
+      }
     },
     "al-puspenerbal": {
       "label": "Pusat Penerbangan TNI AL (PUSPENERBAL)",
@@ -1492,7 +1673,17 @@ window.ORG_DATA = {
       "short": "PUSPENERBAL",
       "sourceIds": [
         "al-penerbal"
-      ]
+      ],
+      "address": {
+        "text": "Jl. Juanda, Sedati, Sidoarjo, Jawa Timur",
+        "status": "Sumber resmi",
+        "verified": "2026-09-15",
+        "sourceIds": [
+          "addr-puspenerbal"
+        ],
+        "city": "Sidoarjo",
+        "province": "Jawa Timur"
+      }
     },
     "al-wing-2": {
       "label": "Wing Udara 2 Puspenerbal",
@@ -1602,6 +1793,102 @@ window.ORG_DATA = {
       "title": "Puspom TNI AL pada Kasal Cup 2026",
       "url": "https://www.tnial.mil.id/berita/90528/PRAJURIT-LANAL-YOGYAKARTA-LAKSANAKAN-LATIHAN-PERAN-TEMPUR-BAHAYA-UMUM/",
       "published": "2026-05-20",
+      "accessed": "2026-09-15"
+    },
+    "addr-ppid-tniad": {
+      "title": "PPID TNI AD — Simpul Layanan",
+      "url": "https://ppid.tniad.mil.id/simpul-layanan",
+      "published": null,
+      "accessed": "2026-09-15"
+    },
+    "addr-seskoad": {
+      "title": "Seskoad — situs resmi",
+      "url": "https://seskoad.mil.id/",
+      "published": null,
+      "accessed": "2026-09-15"
+    },
+    "addr-secapaad": {
+      "title": "Secapa AD — Kontak",
+      "url": "https://secapaad.mil.id/kontak/",
+      "published": null,
+      "accessed": "2026-09-15"
+    },
+    "addr-pusterad": {
+      "title": "PPID TNI AD — kegiatan di Mapusterad",
+      "url": "https://ppid.tniad.mil.id/index.php/i/39013/pusterad-gelar-sosialisasi-lomba-binter-wujudkan-kesamaan-persepsi-dan-tingkatkan-kualitas-pembinaan-teritorial",
+      "published": "2026-08-21",
+      "accessed": "2026-09-15"
+    },
+    "addr-puspomad": {
+      "title": "Puspomad — situs resmi",
+      "url": "https://puspomad.mil.id/",
+      "published": null,
+      "accessed": "2026-09-15"
+    },
+    "addr-aau": {
+      "title": "Akademi Angkatan Udara — Kontak",
+      "url": "https://aau.ac.id/contact-us/",
+      "published": null,
+      "accessed": "2026-09-15"
+    },
+    "addr-pushidrosal": {
+      "title": "Pushidrosal — situs resmi",
+      "url": "https://www.pushidrosal.id/",
+      "published": null,
+      "accessed": "2026-09-15"
+    },
+    "addr-kolinlamil": {
+      "title": "Kolinlamil — situs resmi",
+      "url": "https://kolinlamil.tnial.mil.id/home",
+      "published": null,
+      "accessed": "2026-09-15"
+    },
+    "addr-koarmada3": {
+      "title": "Koarmada III — situs resmi",
+      "url": "https://koarmada3.tnial.mil.id/",
+      "published": null,
+      "accessed": "2026-09-15"
+    },
+    "addr-puspenerbal": {
+      "title": "Puspenerbal — Kontak",
+      "url": "https://puspenerbal.tnial.mil.id/Kontak-Person/Baca/Kontak-Us-%28Puspenerbal%29.html",
+      "published": null,
+      "accessed": "2026-09-15"
+    },
+    "addr-kormar": {
+      "title": "Korps Marinir — Struktur Organisasi",
+      "url": "https://marinir.tnial.mil.id/struktur",
+      "published": null,
+      "accessed": "2026-09-15"
+    },
+    "addr-pasmar1": {
+      "title": "Pasmar 1 — situs resmi",
+      "url": "https://pasmar1.tnial.mil.id/",
+      "published": null,
+      "accessed": "2026-09-15"
+    },
+    "addr-pasmar2": {
+      "title": "Pasmar 2 — Call Center",
+      "url": "https://pasmar2.tnial.mil.id/callcenters",
+      "published": null,
+      "accessed": "2026-09-15"
+    },
+    "addr-pasmar3": {
+      "title": "Pasmar 3 — situs resmi",
+      "url": "https://pasmar3.tnial.mil.id/",
+      "published": null,
+      "accessed": "2026-09-15"
+    },
+    "addr-akmil": {
+      "title": "Akademi Militer — Lokasi",
+      "url": "https://www.akmil.ac.id/lokasi",
+      "published": null,
+      "accessed": "2026-09-15"
+    },
+    "addr-seskoal": {
+      "title": "TNI AL — kegiatan Seskoal di Cipulir",
+      "url": "https://www.tnial.mil.id/berita/91142/KASAL-PIMPIN-UPACARA-PENUTUPAN-PENDIDIKAN-DIKREG-SESKOAL-ANGKATAN-KE-65-TA-2026/",
+      "published": "2026-06-19",
       "accessed": "2026-09-15"
     }
   },

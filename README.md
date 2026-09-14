@@ -17,7 +17,33 @@ Aplikasi web lokal untuk tiga matra: **TNI AD, TNI AU, dan TNI AL**, dengan tema
 - Klik panah di sebelah jabatan untuk membuka/menutup cabang. **Buka semua** dan **Tutup semua** berlaku pada struktur yang sedang ditampilkan.
 - Klik jabatan untuk melihat rincian, lalu **Fokus pada struktur ini** untuk menjadikannya pangkal tampilan. Gunakan navigasi kiri/atas atau jejak struktur untuk kembali.
 - Klik **Edit/Tambah nama pejabat** di panel rincian. Pada ponsel, panel rincian berada di bawah struktur.
+- Jika alamat markas/satuan telah diverifikasi, panel rincian menampilkan **Alamat Markas / Satuan**, status sumber, tanggal verifikasi, tautan sumber, dan tombol **Buka peta**. Pencarian juga membaca alamat, kota, dan provinsi.
 - Animasi otomatis ditiadakan jika pengaturan sistem/browser mengaktifkan pengurangan gerakan.
+
+## Data alamat dan sumber publik
+
+Versi ini menambahkan dukungan properti `address` pada simpul yang benar-benar mewakili lokasi fisik. Alamat tidak dipasang pada simpul yang hanya berupa jabatan, kategori, atau pola organisasi. Contoh struktur data:
+
+```js
+"contoh-satuan": {
+  label: "Nama satuan",
+  address: {
+    text: "Alamat publik satuan",
+    city: "Kota",
+    province: "Provinsi",
+    postalCode: "00000",
+    status: "Sumber resmi",
+    verified: "2026-09-15",
+    sourceIds: ["id-sumber"],
+    note: "Catatan bila sumber hanya memastikan sebagian alamat."
+  },
+  children: []
+}
+```
+
+Alamat awal yang sudah dimasukkan mencakup 18 simpul fisik yang dapat diverifikasi dari situs resmi/PPID terbuka, antara lain Mabes AD/AU/AL, Seskoad, Secapa AD, Pusterad, Puspomad, Akmil, AAU, Pushidrosal, Kolinlamil, Koarmada III, Puspenerbal, Korps Marinir, Pasmar 1–3, dan Seskoal. Jika sumber resmi hanya memastikan kota/kawasan dan tidak mencantumkan nomor jalan, aplikasi menyimpan bentuk lokasi yang didukung sumber tersebut dan memberikan catatan; aplikasi tidak menebak detail yang hilang.
+
+Sumber alamat disimpan di `window.ORG_DATA.sources`. Kanal web atau media sosial publik dapat ditambahkan sebagai sumber, tetapi data sebaiknya hanya diberi status **Sumber resmi** jika kanal tersebut memang merupakan kanal resmi instansi/satuan. Tanggal `verified` menunjukkan kapan alamat terakhir dicocokkan dengan sumber publik, bukan jaminan bahwa alamat tidak berubah setelah tanggal tersebut.
 
 ## Menambah atau mengganti nama
 
@@ -97,3 +123,47 @@ Penamaan Setumad/Denmabesad disatukan dengan nama lengkapnya. Satuan yang muncul
 - `README.md` — panduan ini.
 
 Tidak ada pustaka eksternal, analitik, permintaan jaringan, atau proses build. Editor mengubah data lokal saja dan tidak mengirimkan data ke layanan mana pun.
+
+
+## Lambang matra
+
+Versi profesional menampilkan lambang TNI AD, TNI AU, dan TNI AL pada pemilih matra dan header. Bentuk/identitas lambang diverifikasi terhadap sumber resmi berikut:
+
+- TNI AD — Kartika Eka Paksi: https://tniad.mil.id/profil/
+- TNI AU — Swa Bhuwana Paksa: https://www.tni-au.mil.id/
+- TNI AL — Jalesveva Jayamahe: https://www.tnial.mil.id/marstnial/ dan publikasi resmi TNI AL.
+
+Untuk berkas gambar tampilan, aplikasi memakai salinan raster dari Wikimedia Commons yang mereproduksi insignia pemerintah; khusus lambang TNI AL, halaman berkas menyatakan vektorisasi mengikuti arahan resmi Penpas TNI AL No. 20/Juni 2021. Halaman rujukan teknis:
+
+- AD: https://commons.wikimedia.org/wiki/File:Insignia_of_the_Indonesian_Army.svg
+- AU: https://commons.wikimedia.org/wiki/File:Insignia_of_the_Indonesian_Air_Force.svg
+- AL: https://commons.wikimedia.org/wiki/File:Insignia_of_the_Indonesian_Navy.svg
+
+Catatan offline: struktur, data, dan seluruh fungsi utama tetap lokal. Lambang resolusi tinggi dimuat dari URL di atas saat internet tersedia. Jika internet tidak tersedia, aplikasi otomatis memakai ikon lokal bawaan sebagai fallback sehingga fungsi aplikasi tetap berjalan.
+
+
+## Pembaruan logo TNI AU
+
+Logo TNI AU kini disimpan sebagai aset lokal `logo-au.png` dan dipakai langsung oleh pemilih matra, identitas header, serta tampilan TNI AU. Dengan demikian logo tidak bergantung pada koneksi internet dan tidak kembali ke ikon fallback generik saat aplikasi dibuka offline.
+
+## Pembaruan visual v3.0 — 15 September 2026
+
+Versi ini menerapkan gaya dashboard komando yang lebih dekat dengan rancangan visual referensi:
+
+- sidebar permanen dengan pemilih TNI AD / AU / AL yang lebih besar;
+- header identitas matra dan motto dinamis;
+- hero/banner tematik per matra;
+- TNI AU menggunakan aset banner lokal `hero-au.jpg` yang dibuat dari konsep visual dalam proses desain proyek (bukan foto dokumentasi resmi);
+- kartu statistik dinamis yang dihitung dari `data.js`, bukan angka contoh;
+- pencarian, struktur organisasi, detail satuan, alamat, sumber, editor pejabat, dan ekspor data tetap dipertahankan;
+- panel struktur dan rincian memakai gaya dark-glass/cyan serta tata letak yang lebih rapat dan profesional;
+- tampilan tetap responsif untuk layar laptop, tablet, dan ponsel.
+
+Catatan: elemen visual dekoratif tidak dimaksudkan sebagai dokumentasi operasi atau foto resmi TNI. Data organisasi, alamat, nama, dan tautan sumber tetap mengikuti `data.js` dan rujukan yang tercatat di aplikasi.
+
+## Background matra — pembaruan v4
+
+- TNI AD kini memakai `hero-ad.jpg` lokal dengan komposisi latihan lapangan bernuansa hijau, agar konsisten dengan referensi visual TNI AD.
+- TNI AL kini memakai `hero-al.jpg` lokal bertema armada/kapal perang dan laut.
+- Keduanya diberi overlay gelap di CSS agar teks hero tetap terbaca.
+- Referensi visual diverifikasi dari publikasi resmi TNI AD (Latma Ksatria Warrior 2026, Baturaja, 16 Agustus 2026) dan TNI AL (Latihan TNI Terintegrasi 2026, Dabo Singkep, 5–6 Agustus 2026). Aset lokal pada paket ini adalah visual ilustratif/cinematic yang disiapkan untuk antarmuka, bukan salinan foto resmi; sumber resmi dicatat sebagai referensi gaya/konteks.

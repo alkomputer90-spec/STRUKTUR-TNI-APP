@@ -14,18 +14,30 @@
 <body>
   <a class="skip" href="#workspace">Lewati ke struktur</a>
   <aside class="sidebar">
-    <a class="brand" href="#" id="brand-home" aria-label="Struktur TNI, kembali ke seluruh struktur matra"><span class="brand-icon" aria-hidden="true">⌘</span><span>STRUKTUR <b>TNI</b><small>PENJELAJAH ORGANISASI</small></span></a>
+    <a class="brand" href="#" id="brand-home" aria-label="Struktur TNI, kembali ke seluruh struktur matra"><span class="brand-icon brand-logo-wrap" aria-hidden="true"><img id="brand-logo" class="brand-logo" src="favicon.svg" alt=""></span><span>STRUKTUR <b>TNI</b><small>PENJELAJAH ORGANISASI</small></span></a>
     <div id="force-switch" class="force-switch" role="group" aria-label="Pilih matra"></div>
     <div class="nav-label">RUANG EKSPLORASI</div>
     <nav id="navigation" aria-label="Kelompok organisasi"></nav>
     <div class="sidebar-bottom"><span class="offline"><span aria-hidden="true">◉</span> Berjalan secara lokal</span><p>AD: data awal pengguna.<br>AU &amp; AL: ringkasan sumber resmi.<br>Rujukan tersedia di rincian.</p><a href="README.md" target="_blank">Panduan &amp; cara menambah data <span aria-hidden="true">↗</span></a></div>
   </aside>
   <div class="app-shell">
-    <header class="topbar"><div><span class="top-kicker">DIREKTORI ORGANISASI</span><span class="top-title" id="force-name">TNI Angkatan Darat</span></div><span class="seed-badge">DATA AWAL <span>2026</span></span></header>
+    <header class="topbar">
+      <div class="topbar-identity"><span class="topbar-logo-wrap" aria-hidden="true"><img id="topbar-logo" class="topbar-logo" src="favicon.svg" alt=""></span><div><span class="top-kicker" id="force-motto">KARTIKA EKA PAKSI</span><span class="top-title" id="force-name">TNI Angkatan Darat</span></div></div>
+      <button class="top-search-jump" id="top-search-jump" type="button" aria-label="Fokus ke pencarian"><span aria-hidden="true">⌕</span><span>Cari jabatan, satuan, nama pejabat, atau alamat…</span></button>
+    </header>
     <main id="workspace" tabindex="-1">
-      <section class="intro"><div><div class="eyebrow">DARAT · UDARA · LAUT</div><h1>Tiga matra.<br class="mobile-break"> Satu penjelajah.</h1><p>Temukan jabatan, telusuri satuan, dan kenali susunannya.</p></div><div class="total"><strong id="total-count">—</strong><span id="total-label">simpul TNI AD</span></div></section>
+      <section class="hero" id="hero">
+        <div class="hero-copy"><div class="eyebrow" id="hero-kicker">DIRGANTARA INDONESIA</div><h1 id="hero-title">TNI ANGKATAN DARAT</h1><p id="hero-subtitle">Menjaga kedaulatan dan kehormatan Indonesia.</p></div>
+        <div class="hero-motto"><strong id="hero-motto">Kartika Eka Paksi</strong><span id="hero-motto-sub">Pengabdian untuk Indonesia</span></div>
+      </section>
+      <section class="stats-row" aria-label="Ringkasan data matra">
+        <article class="stat-card"><span class="stat-icon" aria-hidden="true">⌘</span><div><span>Total Simpul</span><strong id="stat-total">—</strong><small>data saat ini</small></div></article>
+        <article class="stat-card"><span class="stat-icon" aria-hidden="true">▦</span><div><span>Satuan Utama</span><strong id="stat-main">—</strong><small>cabang langsung</small></div></article>
+        <article class="stat-card"><span class="stat-icon" aria-hidden="true">⌖</span><div><span>Alamat Terverifikasi</span><strong id="stat-address">—</strong><small>lokasi publik</small></div></article>
+        <article class="stat-card"><span class="stat-icon" aria-hidden="true">◎</span><div><span>Sumber Data</span><strong id="stat-sources">—</strong><small>rujukan tercatat</small></div></article>
+      </section>
       <section class="search-section" aria-label="Pencarian organisasi">
-        <form id="search-form" class="search-box" role="search"><span class="search-icon" aria-hidden="true"></span><label class="sr-only" for="search">Cari jabatan, satuan, atau nama pejabat</label><input id="search" type="search" autocomplete="off" placeholder="Cari jabatan, satuan, atau nama pejabat…" aria-controls="search-results" aria-describedby="search-help"><button id="clear-search" type="button" hidden aria-label="Hapus pencarian">×</button><button class="search-submit" type="submit">Telusuri <span aria-hidden="true">↵</span></button></form>
+        <form id="search-form" class="search-box" role="search"><span class="search-icon" aria-hidden="true"></span><label class="sr-only" for="search">Cari jabatan, satuan, atau nama pejabat</label><input id="search" type="search" autocomplete="off" placeholder="Cari jabatan, satuan, nama pejabat, alamat, kota, atau provinsi…" aria-controls="search-results" aria-describedby="search-help"><button id="clear-search" type="button" hidden aria-label="Hapus pencarian">×</button><button class="search-submit" type="submit">Telusuri <span aria-hidden="true">↵</span></button></form>
         <div class="search-under"><span id="search-help">Coba cari:</span><button class="quick" data-query="KASAD">KASAD</button><button class="quick" data-query="KASAU">KASAU</button><button class="quick" data-query="KASAL">KASAL</button><button class="quick" data-query="KOOPSUDNAS">KOOPSUDNAS</button><button class="quick" data-query="KOARMADA RI">KOARMADA RI</button><span class="search-tip">Pencarian semua matra</span></div>
         <div id="search-results" class="search-results" hidden></div>
         <p id="search-status" class="sr-only" aria-live="polite" role="status"></p>
@@ -39,7 +51,7 @@
         </section>
         <aside class="inspector" aria-labelledby="detail-heading"><div class="detail-label"><span>RINCIAN TERPILIH</span><span aria-hidden="true">↗</span></div><div id="details"></div></aside>
       </div>
-      <footer class="page-footer"><span>STRUKTUR TNI <span class="footer-dot">/</span> Penjelajah lokal</span><span>Data awal · belum mencakup seluruh satuan.</span></footer>
+      <footer class="page-footer"><span>STRUKTUR TNI <span class="footer-dot">—</span> Penjelajah organisasi</span><span>Data awal · belum mencakup seluruh satuan.</span><span>Versi 3.0 · 15 September 2026</span></footer>
     </main>
   </div>
   <dialog id="edit-dialog"><form id="edit-form"><div class="dialog-top"><h2>Edit nama pejabat</h2><button type="button" id="close-dialog" aria-label="Tutup">×</button></div><p id="edit-role"></p><label for="officer-input">Pangkat dan nama lengkap</label><input id="officer-input" maxlength="200" placeholder="Contoh: Mayjen TNI Nama Pejabat"><p class="muted">Kosongkan jika nama belum tersedia. Perubahan disimpan di browser ini; ekspor data untuk menyimpan salinan.</p><div class="dialog-actions"><button type="button" id="cancel-edit">Batal</button><button class="primary" type="submit">Simpan perubahan</button></div></form></dialog>

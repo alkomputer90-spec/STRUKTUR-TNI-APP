@@ -89,10 +89,70 @@
   let triggerBeforeDialog;
   let resultIndex = 0;
 
+  const forcePresentation = {
+    ad: {
+      kicker: 'KARTIKA INDONESIA',
+      title: 'TNI ANGKATAN DARAT',
+      subtitle: 'Menjaga kedaulatan darat dan kehormatan Indonesia.',
+      motto: 'Kartika Eka Paksi',
+      mottoSub: 'Pengabdian untuk Indonesia'
+    },
+    au: {
+      kicker: 'DIRGANTARA INDONESIA',
+      title: 'TNI ANGKATAN UDARA',
+      subtitle: 'Menjaga kedaulatan udara demi Indonesia maju.',
+      motto: 'Swa Bhuwana Paksa',
+      mottoSub: 'Di langit kami berbakti'
+    },
+    al: {
+      kicker: 'SAMUDRA INDONESIA',
+      title: 'TNI ANGKATAN LAUT',
+      subtitle: 'Menjaga kedaulatan laut dan kepentingan maritim Indonesia.',
+      motto: 'Jalesveva Jayamahe',
+      mottoSub: 'Justru di laut kita jaya'
+    }
+  };
+
+  const forceBrand = {
+    ad: {
+      logo: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Insignia_of_the_Indonesian_Army.svg/330px-Insignia_of_the_Indonesian_Army.svg.png',
+      fallback: 'favicon.svg',
+      title: 'Kartika Eka Paksi'
+    },
+    au: {
+      logo: 'logo-au.png',
+      fallback: 'logo-au.png',
+      title: 'Swa Bhuwana Paksa'
+    },
+    al: {
+      logo: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/Insignia_of_the_Indonesian_Navy.svg/500px-Insignia_of_the_Indonesian_Navy.svg.png',
+      fallback: 'favicon-al.svg',
+      title: 'Jalesveva Jayamahe'
+    }
+  };
+  const setLogo = (img, brand) => {
+    if (!img || !brand) return;
+    img.onerror = () => {
+      img.onerror = null;
+      img.src = brand.fallback;
+      img.classList.add('is-fallback');
+    };
+    img.classList.remove('is-fallback');
+    img.src = brand.logo;
+  };
+
   let navigation = [];
   forces.forEach(force => {
-    const button = el('button', 'force-button', force.label);
+    const button = el('button', 'force-button');
     button.type = 'button'; button.dataset.force = force.id;
+    const brand = forceBrand[force.id];
+    const logoWrap = el('span', 'force-logo-wrap');
+    const logo = document.createElement('img');
+    logo.className = 'force-logo'; logo.alt = ''; logo.loading = 'eager';
+    if (brand) setLogo(logo, brand);
+    logoWrap.append(logo);
+    button.append(logoWrap, el('span', 'force-button-label', force.label));
+    button.title = brand ? `${force.label} — ${brand.title}` : force.label;
     button.addEventListener('click', () => { clearSearch(); showView(force.root); });
     $('#force-switch').append(button);
   });
@@ -106,9 +166,31 @@
     document.documentElement.dataset.force = activeForce.id;
     document.querySelector('meta[name="theme-color"]').setAttribute('content', palette.background);
     document.querySelector('link[rel="icon"]').setAttribute('href', palette.icon);
+    const currentBrand = forceBrand[activeForce.id];
+    if (currentBrand) {
+      setLogo($('#brand-logo'), currentBrand);
+      setLogo($('#topbar-logo'), currentBrand);
+    }
     $('#force-name').textContent = activeForce.name;
-    $('#total-count').textContent = descendantCount(activeForce.root) + 1;
-    $('#total-label').textContent = `simpul ${activeForce.label}`;
+    const presentation = forcePresentation[activeForce.id] || forcePresentation.ad;
+    $('#force-motto').textContent = presentation.motto.toUpperCase();
+    $('#hero-kicker').textContent = presentation.kicker;
+    $('#hero-title').textContent = presentation.title;
+    $('#hero-subtitle').textContent = presentation.subtitle;
+    $('#hero-motto').textContent = presentation.motto;
+    $('#hero-motto-sub').textContent = presentation.mottoSub;
+    const forceNodeIds = [activeForce.root, ...descendants(activeForce.root)].filter(id => !nodes[id].ref);
+    const totalNodes = forceNodeIds.length;
+    const addressCount = forceNodeIds.filter(id => nodes[id].address?.text).length;
+    const sourceIds = new Set();
+    forceNodeIds.forEach(id => {
+      (nodes[id].sourceIds || []).forEach(sourceId => sourceIds.add(sourceId));
+      (nodes[id].address?.sourceIds || []).forEach(sourceId => sourceIds.add(sourceId));
+    });
+    $('#stat-total').textContent = totalNodes;
+    $('#stat-main').textContent = children(activeForce.root).length;
+    $('#stat-address').textContent = addressCount;
+    $('#stat-sources').textContent = sourceIds.size;
     document.querySelectorAll('[data-force]').forEach(button => {
       const active = button.dataset.force === activeForce.id;
       button.classList.toggle('active', active);
@@ -229,6 +311,31 @@
       const item = el('div'); item.append(el('strong', '', value), el('span', '', label)); stats.append(item);
     });
     fragment.append(stats);
+    if (node.address?.text) {
+      const addressBlock = el('section', 'detail-address');
+      addressBlock.append(el('span', 'field-label', 'ALAMAT MARKAS / SATUAN'));
+      addressBlock.append(el('p', 'address-text', node.address.text));
+      const meta = el('div', 'address-meta');
+      if (node.address.status) meta.append(el('span', 'address-badge', node.address.status));
+      if (node.address.verified) meta.append(el('span', 'address-verified', `Diverifikasi ${node.address.verified}`));
+      addressBlock.append(meta);
+      const actions = el('div', 'address-actions');
+      const map = el('a', 'address-link', 'Buka peta ↗');
+      map.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(node.address.text)}`;
+      map.target = '_blank'; map.rel = 'noopener noreferrer'; actions.append(map);
+      const addressSources = (node.address.sourceIds || []).map(sourceId => data.sources?.[sourceId]).filter(Boolean);
+      addressSources.forEach(source => {
+        try {
+          const url = new URL(source.url);
+          if (!['http:', 'https:'].includes(url.protocol)) return;
+          const link = el('a', 'address-link', `${source.title} ↗`);
+          link.href = url.href; link.target = '_blank'; link.rel = 'noopener noreferrer'; actions.append(link);
+        } catch { /* Abaikan URL sumber yang rusak. */ }
+      });
+      addressBlock.append(actions);
+      if (node.address.note) addressBlock.append(el('p', 'address-note', node.address.note));
+      fragment.append(addressBlock);
+    }
     const focus = el('button', 'primary focus-branch', nodes[selectedId].ref ? 'Buka simpul utama ↗' : 'Fokus pada struktur ini →');
     focus.type = 'button'; focus.addEventListener('click', () => {
       clearSearch(); showView(id, nodes[selectedId].ref ? paths.get(id) : selectedPath);
@@ -270,7 +377,8 @@
       const node = nodes[id];
       const label = normalize(node.label), abbreviation = normalize(node.short || ''), name = normalize(officer(id));
       const aliases = (node.aliases || []).map(normalize);
-      const haystack = [label, abbreviation, name, ...aliases].join(' ');
+      const address = normalize([node.address?.text, node.address?.city, node.address?.province].filter(Boolean).join(' '));
+      const haystack = [label, abbreviation, name, address, ...aliases].join(' ');
       let rank = 0;
       if (label === q || abbreviation === q || aliases.includes(q)) rank = 100;
       else if (name === q) rank = 90;
@@ -335,6 +443,12 @@
       announce(`Hasil ${resultIndex + 1}: ${nodes[matches[resultIndex]].label}`);
     }
   });
+  $('#top-search-jump')?.addEventListener('click', () => {
+    const input = $('#search');
+    input?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
+    window.setTimeout(() => input?.focus(), 180);
+  });
+
   $('#search-form').addEventListener('submit', event => {
     event.preventDefault(); clearTimeout(searchTimer);
     if (!normalize($('#search').value)) { clearSearch(); showView(activeForce.root); return; }
