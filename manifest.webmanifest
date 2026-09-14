@@ -1,0 +1,14 @@
+{
+  "name": "Struktur TNI — Penjelajah Organisasi",
+  "short_name": "Struktur TNI",
+  "description": "Independent open-source information platform for publicly available TNI organizational data.",
+  "lang": "id",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#06131b",
+  "theme_color": "#0b2230",
+  "icons": [
+    {"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
+  ]
+}

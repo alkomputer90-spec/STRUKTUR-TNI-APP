@@ -1890,6 +1890,20 @@ window.ORG_DATA = {
       "url": "https://www.tnial.mil.id/berita/91142/KASAL-PIMPIN-UPACARA-PENUTUPAN-PENDIDIKAN-DIKREG-SESKOAL-ANGKATAN-KE-65-TA-2026/",
       "published": "2026-06-19",
       "accessed": "2026-09-15"
+    },
+    "personnel-data-priority-kemhan": {
+      "title": "Data Prioritas Jangka Menengah 2025–2029 — Jumlah TNI berdasarkan pangkat",
+      "url": "https://perencanaan.data.go.id/renduk?page=224&per-page=10",
+      "published": null,
+      "accessed": "2026-09-15",
+      "note": "Mencatat variabel statistik tahunan Kemhan mengenai jumlah TNI berdasarkan pangkat dan cakupan AD, AL, AU; halaman publik yang diverifikasi belum menampilkan total aktif 2026 per matra."
+    },
+    "personnel-planning-kemhan-2027": {
+      "title": "Ditjen Kuathan Kemhan — Rencana kebutuhan prajurit TNI TA 2027",
+      "url": "https://www.kemhan.go.id/kuathan/2026/04/06/rapat-tentang-penyusunan-keputusan-menteri-pertahanan-tentang-alokasi-rencana-kebutuhan-prajurit-tentara-nasional-indonesia-ta-2027.html",
+      "published": "2026-04-06",
+      "accessed": "2026-09-15",
+      "note": "Publikasi resmi menegaskan pengelolaan/alokasi kebutuhan prajurit per matra, tetapi tidak memberikan total kekuatan aktif 2026 per matra."
     }
   },
   "forces": [
@@ -1969,5 +1983,29 @@ window.ORG_DATA = {
         ]
       ]
     }
-  ]
+  ],
+  "personnelPublication": {
+    "referenceYear": 2026,
+    "unit": "active personnel",
+    "policy": "Only official, publicly accessible and verifiable totals by service are displayed. No estimates are used.",
+    "lastReviewed": "2026-09-15",
+    "sources": [
+      "personnel-data-priority-kemhan",
+      "personnel-planning-kemhan-2027"
+    ],
+    "forces": {
+      "ad": {
+        "publishedTotal": null,
+        "status": "awaiting_official_open_total"
+      },
+      "al": {
+        "publishedTotal": null,
+        "status": "awaiting_official_open_total"
+      },
+      "au": {
+        "publishedTotal": null,
+        "status": "awaiting_official_open_total"
+      }
+    }
+  }
 };

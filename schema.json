@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/struktur-tni/schema.json",
+  "title": "Struktur TNI Public Institutional Data Schema",
+  "type": "object",
+  "properties": {
+    "id": {"type": "string"},
+    "force": {"enum": ["ad", "au", "al"]},
+    "label": {"type": "string"},
+    "short": {"type": "string"},
+    "parentId": {"type": ["string", "null"]},
+    "officer": {"type": "string"},
+    "aliases": {"type": "array", "items": {"type": "string"}},
+    "address": {
+      "type": "object",
+      "properties": {
+        "text": {"type": "string"},
+        "city": {"type": "string"},
+        "province": {"type": "string"},
+        "postalCode": {"type": "string"},
+        "verified": {"type": "string"},
+        "status": {"type": "string"},
+        "sourceIds": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "sourceIds": {"type": "array", "items": {"type": "string"}},
+    "history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "officer": {"type": "string"},
+          "from": {"type": ["string", "null"]},
+          "to": {"type": ["string", "null"]},
+          "sourceIds": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    }
+  },
+  "required": ["id", "force", "label"]
+}

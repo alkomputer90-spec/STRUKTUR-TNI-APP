@@ -167,3 +167,42 @@ Catatan: elemen visual dekoratif tidak dimaksudkan sebagai dokumentasi operasi a
 - TNI AL kini memakai `hero-al.jpg` lokal bertema armada/kapal perang dan laut.
 - Keduanya diberi overlay gelap di CSS agar teks hero tetap terbaca.
 - Referensi visual diverifikasi dari publikasi resmi TNI AD (Latma Ksatria Warrior 2026, Baturaja, 16 Agustus 2026) dan TNI AL (Latihan TNI Terintegrasi 2026, Dabo Singkep, 5–6 Agustus 2026). Aset lokal pada paket ini adalah visual ilustratif/cinematic yang disiapkan untuk antarmuka, bukan salinan foto resmi; sumber resmi dicatat sebagai referensi gaya/konteks.
+
+---
+
+# Professional v5 — 15 September 2026
+
+Versi ini mengubah aplikasi dari penjelajah struktur sederhana menjadi fondasi **professional data platform**:
+
+- provenance & verification badge per simpul;
+- Source Center dan audit-friendly source references;
+- direktori lokasi institusional publik (tanpa lokasi real-time / nonpublik);
+- quality metrics: coverage, verified, needs verification;
+- global search filter untuk satuan, pejabat, lokasi, dan record terverifikasi;
+- profil simpul dengan ID stabil, status sumber, alamat, histori (bila tersedia), dan tindakan sumber/peta;
+- ID/EN interface toggle tanpa menerjemahkan nama resmi institusi;
+- dark/light mode;
+- responsive/mobile drawer;
+- PWA manifest + service worker untuk deployment HTTP/HTTPS;
+- keyboard shortcut `/` untuk fokus ke pencarian;
+- reduced-motion support dan focus/accessibility improvements;
+- `schema.json` untuk arah standardisasi data;
+- mirror data terpisah di `data/ad.json`, `data/au.json`, `data/al.json`, dan `data/sources.json`.
+
+## Catatan local-first
+
+Runtime tetap menggunakan `data.js` agar aplikasi masih dapat dibuka langsung melalui `file://`. Fitur PWA/install membutuhkan deployment melalui HTTP/HTTPS (misalnya GitHub Pages).
+
+## Kebijakan keamanan data
+
+Platform ini hanya ditujukan untuk informasi institusional yang sudah dipublikasikan secara terbuka. Jangan memasukkan alamat pribadi, fasilitas nonpublik, pergerakan real-time, jadwal operasi, rincian akses keamanan, atau informasi operasional sensitif.
+
+Lihat `docs/METHODOLOGY.md` untuk metodologi dan batasan data.
+
+## Professional v5.1 — panel kekuatan personel terpublikasi
+
+Versi 5.1 menambahkan panel **Kekuatan Personel Terpublikasi — 2026** untuk TNI AD, TNI AL, dan TNI AU. Panel ini sengaja membedakan **jumlah personel aktif per matra** dari angka lain seperti peserta pendidikan, penerimaan, pengerahan tugas, atau estimasi pihak ketiga.
+
+Pada peninjauan sumber publik tanggal **15 September 2026**, Kemhan memiliki variabel/dataset statistik tahunan tentang jumlah TNI berdasarkan pangkat dan cakupan AD–AL–AU, serta publikasi perencanaan kebutuhan prajurit per matra. Namun, halaman publik yang dapat diverifikasi dalam peninjauan ini belum menampilkan total kekuatan aktif 2026 per matra secara lengkap. Karena itu aplikasi menampilkan tanda **—** dan status **Belum ada total resmi terbuka yang terverifikasi**, bukan angka perkiraan.
+
+Sumber rujukan untuk status ini disimpan di `data.js` sebagai `personnel-data-priority-kemhan` dan `personnel-planning-kemhan-2027`. Jika kemudian tersedia publikasi resmi 2026 yang mencantumkan total aktif per matra, isi `personnelPublication.forces.<id>.publishedTotal` dan ubah status setelah verifikasi. Kebijakan platform: **tidak mengubah angka penerimaan, peserta pendidikan, pengerahan operasi, atau angka media menjadi total personel matra.**
