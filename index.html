@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#060a0c">
+  <meta name="theme-color" content="#0b2230">
   <meta name="description" content="Penjelajah organisasi TNI berbasis informasi institusional yang tersedia untuk umum, dengan provenance sumber dan status verifikasi.">
   <meta name="color-scheme" content="dark light">
   <title>Struktur TNI — Professional Data Platform</title>
@@ -22,9 +22,9 @@
     <nav id="navigation" aria-label="Kelompok organisasi"></nav>
     <div class="pro-tools">
       <div class="nav-label" data-i18n="platform">PLATFORM DATA</div>
-      <button class="tool-link" id="open-map" type="button"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/><path d="M12 2v3.4M12 18.6V22M2 12h3.4M18.6 12H22"/></svg></span><span data-i18n="map">Peta Institusi</span></button>
-      <button class="tool-link" id="open-sources" type="button"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.5"/><path d="M4.5 5.5V12c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5V5.5"/><path d="M4.5 12v6.5c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5V12"/></svg></span><span data-i18n="sources">Source Center</span></button>
-      <button class="tool-link" id="open-methodology" type="button"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".9" fill="currentColor" stroke="none"/></svg></span><span data-i18n="methodology">Metodologi</span></button>
+      <button class="tool-link" id="open-map" type="button"><span>⌖</span><span data-i18n="map">Peta Institusi</span></button>
+      <button class="tool-link" id="open-sources" type="button"><span>◎</span><span data-i18n="sources">Source Center</span></button>
+      <button class="tool-link" id="open-methodology" type="button"><span>ⓘ</span><span data-i18n="methodology">Metodologi</span></button>
     </div>
     <div class="sidebar-bottom">
       <span class="offline"><span aria-hidden="true">●</span> <span data-i18n="local">Local-first / offline ready</span></span>
@@ -35,16 +35,12 @@
   </aside>
   <div class="app-shell">
     <header class="topbar">
-      <button class="mobile-menu" id="mobile-menu" type="button" aria-label="Buka menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3.5" y1="7" x2="20.5" y2="7"/><line x1="3.5" y1="12" x2="20.5" y2="12"/><line x1="3.5" y1="17" x2="20.5" y2="17"/></svg></button>
+      <button class="mobile-menu" id="mobile-menu" type="button" aria-label="Buka menu">☰</button>
       <div class="topbar-identity"><span class="topbar-logo-wrap" aria-hidden="true"><img id="topbar-logo" class="topbar-logo" src="favicon.svg" alt=""></span><div><span class="top-kicker" id="force-motto">KARTIKA EKA PAKSI</span><span class="top-title" id="force-name">TNI Angkatan Darat</span></div></div>
-      <button class="top-search-jump" id="top-search-jump" type="button" aria-label="Fokus ke pencarian"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.3" y1="15.3" x2="21" y2="21"/></svg></span><span data-i18n="topSearch">Cari jabatan, satuan, nama pejabat, atau alamat…</span><kbd>/</kbd></button>
-      <div class="topbar-readout" id="topbar-readout" aria-hidden="true">
-        <div><span data-i18n="coverage">Coverage</span><strong id="readout-coverage">—</strong></div>
-        <div><span data-i18n="totalNodes">Total Simpul</span><strong id="readout-total">—</strong></div>
-      </div>
+      <button class="top-search-jump" id="top-search-jump" type="button" aria-label="Fokus ke pencarian"><span aria-hidden="true">⌕</span><span data-i18n="topSearch">Cari jabatan, satuan, nama pejabat, atau alamat…</span><kbd>/</kbd></button>
       <div class="top-actions" aria-label="Preferensi tampilan">
         <button id="lang-toggle" type="button" aria-label="Ganti bahasa">ID</button>
-        <button id="theme-toggle" type="button" aria-label="Ganti tema"></button>
+        <button id="theme-toggle" type="button" aria-label="Ganti tema">◐</button>
         <button id="install-app" type="button" hidden data-i18n="install">Install</button>
       </div>
     </header>
@@ -55,10 +51,10 @@
         <div class="hero-disclaimer"><span>PUBLIC DATA</span><span>•</span><span>NO REAL-TIME OPS</span></div>
       </section>
       <section class="stats-row" aria-label="Ringkasan data matra">
-        <article class="stat-card"><span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="5" r="2.2"/><circle cx="5" cy="17" r="2.2"/><circle cx="19" cy="17" r="2.2"/><path d="M12 7.2v3.3M12 10.5 6.5 15.2M12 10.5l5.5 4.7"/></svg></span><div><span data-i18n="totalNodes">Total Simpul</span><strong id="stat-total">—</strong><small data-i18n="currentData">data saat ini</small></div></article>
-        <article class="stat-card"><span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="7.5" height="7.5" rx="1"/><rect x="13" y="3.5" width="7.5" height="7.5" rx="1"/><rect x="3.5" y="13" width="7.5" height="7.5" rx="1"/><rect x="13" y="13" width="7.5" height="7.5" rx="1"/></svg></span><div><span data-i18n="mainUnits">Satuan Utama</span><strong id="stat-main">—</strong><small data-i18n="directBranches">cabang langsung</small></div></article>
-        <article class="stat-card"><span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12.5l5 5L20 6.5"/></svg></span><div><span data-i18n="verified">Terverifikasi</span><strong id="stat-address">—</strong><small data-i18n="officialEvidence">punya bukti publik</small></div></article>
-        <article class="stat-card"><span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="12" cy="6" rx="7.5" ry="2.5"/><path d="M4.5 6v6.5c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5V6"/><path d="M4.5 12.5V19c0 1.4 3.4 2.5 7.5 2.5s7.5-1.1 7.5-2.5v-6.5"/></svg></span><div><span data-i18n="sourceCount">Sumber Data</span><strong id="stat-sources">—</strong><small data-i18n="recordedRefs">rujukan tercatat</small></div></article>
+        <article class="stat-card"><span class="stat-icon" aria-hidden="true">⌘</span><div><span data-i18n="totalNodes">Total Simpul</span><strong id="stat-total">—</strong><small data-i18n="currentData">data saat ini</small></div></article>
+        <article class="stat-card"><span class="stat-icon" aria-hidden="true">▦</span><div><span data-i18n="mainUnits">Satuan Utama</span><strong id="stat-main">—</strong><small data-i18n="directBranches">cabang langsung</small></div></article>
+        <article class="stat-card"><span class="stat-icon" aria-hidden="true">✓</span><div><span data-i18n="verified">Terverifikasi</span><strong id="stat-address">—</strong><small data-i18n="officialEvidence">punya bukti publik</small></div></article>
+        <article class="stat-card"><span class="stat-icon" aria-hidden="true">◎</span><div><span data-i18n="sourceCount">Sumber Data</span><strong id="stat-sources">—</strong><small data-i18n="recordedRefs">rujukan tercatat</small></div></article>
       </section>
       <section class="quality-strip" aria-label="Kualitas data">
         <div><span data-i18n="coverage">Coverage</span><strong id="quality-coverage">0%</strong><progress id="coverage-progress" max="100" value="0"></progress></div>
@@ -76,7 +72,7 @@
           <article class="personnel-card" data-personnel-force="al"><div class="personnel-force"><strong>TNI AL</strong><span>Angkatan Laut</span></div><div class="personnel-value" id="personnel-al">—</div><div class="personnel-status"><span class="status-dot pending"></span><span data-i18n="personnelPending">Belum ada total resmi terbuka yang terverifikasi</span></div><small data-i18n="personnelUnit">Satuan: personel aktif · Tahun acuan: 2026</small></article>
           <article class="personnel-card" data-personnel-force="au"><div class="personnel-force"><strong>TNI AU</strong><span>Angkatan Udara</span></div><div class="personnel-value" id="personnel-au">—</div><div class="personnel-status"><span class="status-dot pending"></span><span data-i18n="personnelPending">Belum ada total resmi terbuka yang terverifikasi</span></div><small data-i18n="personnelUnit">Satuan: personel aktif · Tahun acuan: 2026</small></article>
         </div>
-        <div class="personnel-note"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="16" height="16"><circle cx="12" cy="12" r="8.5"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.8" r=".9" fill="currentColor" stroke="none"/></svg></span><p><strong data-i18n="personnelPolicyTitle">Kebijakan angka personel:</strong> <span data-i18n="personnelPolicy">sistem tidak memakai estimasi, angka media, atau jumlah peserta pendidikan sebagai total kekuatan matra. Angka baru akan muncul setelah sumber resmi 2026 tersedia dan lolos verifikasi.</span></p></div>
+        <div class="personnel-note"><span aria-hidden="true">ⓘ</span><p><strong data-i18n="personnelPolicyTitle">Kebijakan angka personel:</strong> <span data-i18n="personnelPolicy">sistem tidak memakai estimasi, angka media, atau jumlah peserta pendidikan sebagai total kekuatan matra. Angka baru akan muncul setelah sumber resmi 2026 tersedia dan lolos verifikasi.</span></p></div>
       </section>
       <section class="search-section" aria-label="Pencarian organisasi">
         <form id="search-form" class="search-box" role="search"><span class="search-icon" aria-hidden="true"></span><label class="sr-only" for="search">Cari data</label><input id="search" type="search" autocomplete="off" placeholder="Cari jabatan, satuan, pejabat, alamat, kota, provinsi…" aria-controls="search-results" aria-describedby="search-help"><select id="search-filter" aria-label="Filter hasil"><option value="all">Semua</option><option value="unit">Satuan</option><option value="officer">Pejabat</option><option value="location">Lokasi</option><option value="verified">Terverifikasi</option></select><button id="clear-search" type="button" hidden aria-label="Hapus pencarian">×</button><button class="search-submit" type="submit"><span data-i18n="search">Telusuri</span> <span aria-hidden="true">↵</span></button></form>

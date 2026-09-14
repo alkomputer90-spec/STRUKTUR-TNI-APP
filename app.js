@@ -7,31 +7,6 @@
     if (text !== undefined) element.textContent = text;
     return element;
   };
-  // Small inline-SVG icon set (stroke, currentColor) replacing the old
-  // unicode glyphs — renders identically across devices/fonts.
-  const ICONS = {
-    hub: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="5" r="2.2"/><circle cx="5" cy="17" r="2.2"/><circle cx="19" cy="17" r="2.2"/><path d="M12 7.2v3.3M12 10.5 6.5 15.2M12 10.5l5.5 4.7"/></svg>',
-    rows: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>',
-    diamond: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3.5 20.5 12 12 20.5 3.5 12Z"/></svg>',
-    grid: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="7.5" height="7.5" rx="1"/><rect x="13" y="3.5" width="7.5" height="7.5" rx="1"/><rect x="3.5" y="13" width="7.5" height="7.5" rx="1"/><rect x="13" y="13" width="7.5" height="7.5" rx="1"/></svg>',
-    list: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5" cy="6" r="1.2" fill="currentColor" stroke="none"/><circle cx="5" cy="12" r="1.2" fill="currentColor" stroke="none"/><circle cx="5" cy="18" r="1.2" fill="currentColor" stroke="none"/><line x1="9" y1="6" x2="20" y2="6"/><line x1="9" y1="12" x2="20" y2="12"/><line x1="9" y1="18" x2="20" y2="18"/></svg>',
-    circle: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/></svg>',
-    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 12.5l5 5L20 6.5"/></svg>',
-    half: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17Z" fill="currentColor" stroke="none"/></svg>',
-    warn: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4 21 19.5H3Z"/><line x1="12" y1="10" x2="12" y2="14.5"/><circle cx="12" cy="17.2" r=".9" fill="currentColor" stroke="none"/></svg>',
-    sun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.6 12H2.2M21.8 12h-2.4M6 6l1.6 1.6M16.4 16.4 18 18M18 6l-1.6 1.6M7.6 16.4 6 18"/></svg>',
-    moon: '<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.5 14.7A8.5 8.5 0 1 1 9.3 3.5a7 7 0 0 0 11.2 11.2Z"/></svg>'
-  };
-  const elIcon = (tag, className, iconName) => {
-    const element = document.createElement(tag);
-    if (className) element.className = className;
-    element.innerHTML = ICONS[iconName] || '';
-    return element;
-  };
-  function syncThemeColor(){
-    const bg = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim();
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', bg || '#060a0c');
-  }
   const data = window.ORG_DATA;
   // Validate before traversing so a typo in data.js produces a useful message.
   try {
@@ -213,10 +188,14 @@
   }
 
   function renderForce() {
-    const theme = { ad: { icon: 'favicon.svg' }, au: { icon: 'favicon-au.svg' }, al: { icon: 'favicon-al.svg' } };
+    const theme = {
+      ad: { background: '#0d130f', icon: 'favicon.svg' },
+      au: { background: '#091923', icon: 'favicon-au.svg' },
+      al: { background: '#070f24', icon: 'favicon-al.svg' }
+    };
     const palette = theme[activeForce.id] || theme.ad;
     document.documentElement.dataset.force = activeForce.id;
-    syncThemeColor();
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', palette.background);
     document.querySelector('link[rel="icon"]').setAttribute('href', palette.icon);
     const currentBrand = forceBrand[activeForce.id];
     if (currentBrand) {
@@ -243,9 +222,6 @@
     $('#stat-main').textContent = children(activeForce.root).length;
     $('#stat-address').textContent = verifiedCount;
     $('#stat-sources').textContent = sourceIds.size;
-    const readoutTotal = $('#readout-total'); if (readoutTotal) readoutTotal.textContent = totalNodes;
-    const readoutCoverage = $('#readout-coverage');
-    if (readoutCoverage) readoutCoverage.textContent = totalNodes ? `${Math.round((verifiedCount / totalNodes) * 100)}%` : '—';
     renderPersonnelPublication();
     document.querySelectorAll('[data-force]').forEach(button => {
       const active = button.dataset.force === activeForce.id;
@@ -254,12 +230,12 @@
     });
     if (renderedForceId === activeForce.id) return;
     renderedForceId = activeForce.id;
-    navigation = [[activeForce.root, 'Seluruh struktur', 'hub'], ...(activeForce.nav || []).map(([id, label], index) => [id, label, ['rows', 'diamond', 'grid', 'list', 'circle'][index % 5]])];
+    navigation = [[activeForce.root, 'Seluruh struktur', '⌘'], ...(activeForce.nav || []).map(([id, label], index) => [id, label, ['▥', '◇', '⊞', '▤', '◎'][index % 5]])];
     $('#navigation').replaceChildren();
     navigation.filter(([id]) => nodes[id]).forEach(([id, label, icon]) => {
       const button = el('button');
       button.type = 'button'; button.dataset.nav = id;
-      const mark = elIcon('span', 'nav-icon', icon); mark.setAttribute('aria-hidden', 'true');
+      const mark = el('span', 'nav-icon', icon); mark.setAttribute('aria-hidden', 'true');
       button.append(mark, el('span', '', label), el('span', 'nav-num', id === activeForce.root ? 'ALL' : String(children(id).length).padStart(2, '0')));
       button.addEventListener('click', () => { clearSearch(); showView(id); });
       $('#navigation').append(button);
@@ -355,12 +331,12 @@
     const id = canonical(selectedId);
     const node = nodes[id];
     const fragment = document.createDocumentFragment();
-    const emblem = elIcon('div', 'detail-emblem', 'hub'); emblem.setAttribute('aria-hidden', 'true');
+    const emblem = el('div', 'detail-emblem', '⌘'); emblem.setAttribute('aria-hidden', 'true');
     const title = el('h2', '', node.label); title.id = 'detail-heading';
     fragment.append(emblem, el('div', 'detail-short', node.short || 'SIMPUL ORGANISASI'), title);
     const verify = verification(id);
     const trust = el('div', `trust-badge trust-${verify.level}`);
-    trust.append(elIcon('span', '', verify.level === 'verified' ? 'check' : verify.level === 'secondary' ? 'half' : 'warn'), el('strong', '', verify.label));
+    trust.append(el('span', '', verify.level === 'verified' ? '✓' : verify.level === 'secondary' ? '◐' : '!'), el('strong', '', verify.label));
     fragment.append(trust);
     const profileMeta = el('div', 'profile-meta');
     profileMeta.append(el('span', '', forceOf(id).label), el('span', '', `ID: ${id}`), el('span', '', node.address?.verified ? `Verified: ${node.address.verified}` : 'Verification date: —'));
@@ -656,7 +632,7 @@
   function applyLang(){ document.documentElement.lang=lang; document.querySelectorAll('[data-i18n]').forEach(e=>{const k=e.dataset.i18n;e.textContent=lang==='en'?(translations.en[k]||idText.get(k)||e.textContent):(idText.get(k)||e.textContent)}); $('#lang-toggle').textContent=lang==='id'?'ID':'EN'; localStorage.setItem('struktur-tni.lang',lang); }
   $('#lang-toggle')?.addEventListener('click',()=>{lang=lang==='id'?'en':'id';applyLang();}); applyLang();
   let theme=localStorage.getItem('struktur-tni.theme')||'dark';
-  function applyTheme(){document.documentElement.dataset.theme=theme;const tb=$('#theme-toggle');if(tb)tb.innerHTML=ICONS[theme==='dark'?'moon':'sun'];syncThemeColor();localStorage.setItem('struktur-tni.theme',theme);} $('#theme-toggle')?.addEventListener('click',()=>{theme=theme==='dark'?'light':'dark';applyTheme();});applyTheme();
+  function applyTheme(){document.documentElement.dataset.theme=theme;$('#theme-toggle').textContent=theme==='dark'?'◐':'◑';localStorage.setItem('struktur-tni.theme',theme);} $('#theme-toggle')?.addEventListener('click',()=>{theme=theme==='dark'?'light':'dark';applyTheme();});applyTheme();
   document.addEventListener('keydown',e=>{if(e.key==='/' && !/input|textarea|select/i.test(document.activeElement?.tagName)){e.preventDefault();$('#search').focus();}});
   let installPrompt=null; window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;$('#install-app').hidden=false;}); $('#install-app')?.addEventListener('click',async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;$('#install-app').hidden=true;});
   if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('./sw.js').catch(()=>{});
